@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>title</title>
+    <style></style>
+    <script src="../packages/vue/dist/vue.global.js"></script>
+  </head>
+
+  <body>
+    <div id="app"></div>
+    <script>
+      const { createApp, toRef, computed, ref } = Vue
+      /* 点击子节点：
+				父节点未添加capture时：默认先调用子节点事件，然后再触发父节点事件
+				父节点添加@click.capture时：先处理父事件，然后再触发子节点事件
+			*/
+      const App = {
+        template: `
+					<div @click.capture="clickDiv"> div <span @click="clickSpan">span</span> </div>
+				`,
+        methods: {
+          clickDiv() {
+            console.log('clickDiv')
+          },
+          clickSpan() {
+            console.log('clickSpan')
+          }
+        }
+      }
+
+      const app = createApp(App)
+      app.mount('#app')
+    </script>
+  </body>
+</html>

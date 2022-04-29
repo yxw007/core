@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>title</title>
+    <style>
+      div {
+        background-color: rgb(204, 219, 231);
+      }
+      div span {
+        background-color: rgb(110, 209, 106);
+      }
+      div span h1 {
+        background-color: rgb(27, 104, 104);
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="root">
+      div
+      <span id="son">
+        span
+        <h1 id="grandson">title</h1>
+      </span>
+    </div>
+    <script>
+      document.getElementById('root').onclick = () => {
+        console.log('root')
+      }
+
+      document.getElementById('son').onclick = () => {
+        console.log('son')
+      }
+
+      document.getElementById('grandson').onclick = () => {
+        console.log('grandson')
+      }
+    </script>
+  </body>
+</html>

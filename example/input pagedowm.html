@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>title</title>
+    <style></style>
+    <script src="../packages/vue/dist/vue.global.js"></script>
+  </head>
+
+  <body>
+    <div id="app"></div>
+    <script>
+      const { createApp, toRef, computed, ref } = Vue
+      const App = {
+        template: `
+      		<input @keyup.page-down="onPageDown" /> <br>
+					<input @keyup.home="onHome" />
+      	`,
+        methods: {
+          onPageDown() {
+            console.log('onPageDowm')
+          },
+          onHome() {
+            console.log('onHome')
+          }
+        }
+      }
+
+      const app = createApp(App)
+      app.mount('#app')
+    </script>
+  </body>
+</html>

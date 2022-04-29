@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>title</title>
+    <style>
+      div {
+        background-color: rgb(204, 219, 231);
+      }
+      div span {
+        background-color: rgb(110, 209, 106);
+      }
+      div span h1 {
+        background-color: rgb(27, 104, 104);
+      }
+    </style>
+    <script src="../packages/vue/dist/vue.global.js"></script>
+  </head>
+
+  <body>
+    <div id="app"></div>
+    <script>
+      const { createApp, toRef, computed, ref } = Vue
+      const App = {
+        template: `
+					<div @click="clickDiv"> 
+						div 
+						<span @click.self.stop="clickSpan">
+							span
+							<h1 @click="clickTitle">title</h1>
+						</span> 
+					</div>
+				`,
+        methods: {
+          clickDiv() {
+            console.log('clickDiv')
+          },
+          clickSpan() {
+            console.log('clickSpan')
+          },
+          clickTitle() {
+            console.log('clickTitle')
+          }
+        }
+      }
+
+      const app = createApp(App)
+      app.mount('#app')
+    </script>
+  </body>
+</html>

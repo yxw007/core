@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>title</title>
+    <style></style>
+    <script src="../packages/vue/dist/vue.global.js"></script>
+  </head>
+
+  <body>
+    <div id="app"></div>
+    <script>
+      const { createApp, toRef, computed, ref } = Vue
+      const App = {
+        template: `
+					<button @click.once="clickButton">click me</button>
+				`,
+        methods: {
+          clickButton() {
+            console.log('clickButton')
+          }
+        }
+      }
+
+      const app = createApp(App)
+      app.mount('#app')
+    </script>
+  </body>
+</html>

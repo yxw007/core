@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>title</title>
+    <style></style>
+    <script src="../packages/vue/dist/vue.global.js"></script>
+  </head>
+
+  <body>
+    <div id="app"></div>
+    <script>
+      const { createApp, toRef, computed, ref } = Vue
+      const Comp = {
+        template: `
+				 <div>
+						{{ unreactiveRef.username }}
+					</div>
+					<div>
+						{{ reactiveComputed.username }}
+					</div>
+				`,
+        props: {
+          userInfos: Object
+        },
+        setup(props) {
+          const unreactiveRef = toRef(props.userInfos, 'infos')
+          const reactiveComputed = computed(() => props.userInfos.infos)
+          return {
+            unreactiveRef,
+            reactiveComputed
+          }
+        }
+      }
+
+      const App = {
+        components: {
+          Comp
+        },
+        template: `
+					<Comp :userInfos="data"/>
+					<button @click="toggleData">
+						Toggle names
+					</button>
+				`,
+        setup() {
+          const msg = ref('Hello World!')
+          const data = ref({
+            infos: { username: 'James' }
+          })
+
+          const toggleData = () => {
+            if (data.value.infos.username === 'James') {
+              // data.value = { infos: { username: 'Jack' } }
+              data.value.infos = { username: 'Jack' }
+              return
+            }
+
+            // data.value.infos = { infos: { username: 'James' } }
+            data.value.infos = { username: 'James' }
+          }
+
+          return {
+            data,
+            toggleData
+          }
+        }
+      }
+
+      const app = createApp(App)
+      app.mount('#app')
+    </script>
+  </body>
+</html>
